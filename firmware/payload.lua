@@ -12,8 +12,6 @@ do
 
   local main = function()
     mqttwrap.subscribe("datainput/bathroom/scale/raw",0)
-    -- FIXME: this overlaps with default setup
-    -- - TODO: a proper subscribe-handler setup is necessary in mqttwrap!
     mqttwrap.handletopic("datainput/bathroom/scale/raw", function(topic, data)
       rawval = tonumber(data)
       val_user1 = gpio.read(self.pin_user1)
