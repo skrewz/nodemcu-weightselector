@@ -1,6 +1,8 @@
 # nodemcu-weightselector
 A (very) simple (yet somehow overcomplicated) button to select who stepped on a scale.
 
+![A button. In a case.](imgs/weightselector.jpeg "Weightselector case")
+
 # Submodules beware
 
 This repo has submodules, notably [nodemcu-scaffold](https://github.com/skrewz/nodemcu-scaffold), and chained therefrom, [nodemcu-libs](https://github.com/skrewz/nodemcu-libs).
