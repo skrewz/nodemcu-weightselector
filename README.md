@@ -28,3 +28,5 @@ It's meant to be printed in the orientation of the model. The strips across prov
 ## Building/uploading
 
 This example is fairly self-contained. It ought to be possible to simply run `make upload` and issue a `node.flashreload("lfs.img")` from within the serial console, referring to [nodemcu-scaffold's README](https://github.com/skrewz/nodemcu-scaffold/blob/master/README.md). Of course, it'll fail horribly at connecting to my MQTT setup, etc.
+
+You'll need the [ws2812](https://nodemcu.readthedocs.io/en/master/modules/ws2812/) and [ws2812-effects](https://nodemcu.readthedocs.io/en/master/modules/ws2812-effects/) modules for this demo, too. Those in turn require the [bit](https://nodemcu.readthedocs.io/en/master/modules/bit/) module, if memory serves.
