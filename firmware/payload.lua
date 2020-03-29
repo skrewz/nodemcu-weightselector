@@ -67,7 +67,7 @@ do
       colour_effect("red","static")
     end
 
-    self.tmr_disable:register(60000, tmr.ALARM_SINGLE, disable)
+    self.tmr_disable:register(180000, tmr.ALARM_SINGLE, disable)
     self.tmr_disable:start()
 
   end
