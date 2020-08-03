@@ -67,7 +67,7 @@ do
       colour_effect("red","static")
     end
 
-    self.tmr_disable:register(180000, tmr.ALARM_SINGLE, disable)
+    self.tmr_disable:register(300000, tmr.ALARM_SINGLE, disable)
     self.tmr_disable:start()
 
   end
@@ -100,7 +100,7 @@ do
     -- success.
     mqttwrap.handletopic("datainput/bathroom/scale/published", function(topic, data)
       colour_effect("green","static")
-      self.tmr_disable:register(5000, tmr.ALARM_SINGLE, disable)
+      self.tmr_disable:register(120000, tmr.ALARM_SINGLE, disable)
       self.tmr_disable:start()
     end)
 
