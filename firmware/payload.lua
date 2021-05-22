@@ -56,15 +56,22 @@ do
     local u2_val = gpio.read(self.pin_user2)
     print ("button_state_handler, have user1="..u1_val.." user2="..u2_val)
 
+    name_chosen = nil
     if 1 == u1_val and 1 == u2_val then
       self.currently_selected_user = nil
       colour_effect("black","static")
     elseif 0 == u1_val then
       self.currently_selected_user = 1
+      name_chosen = "user1"
       colour_effect("blue","static")
     elseif 0 == u2_val then
       self.currently_selected_user = 2
       colour_effect("red","static")
+      name_chosen = "user2"
+    end
+
+    if name_chosen then
+      mqttwrap.maybepublish("datainput/bathroom/weightselector/user_selected", "name="..name_chosen, 0, 0)
     end
 
     self.tmr_disable:register(300000, tmr.ALARM_SINGLE, disable)
