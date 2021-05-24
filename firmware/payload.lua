@@ -56,22 +56,19 @@ do
     local u2_val = gpio.read(self.pin_user2)
     print ("button_state_handler, have user1="..u1_val.." user2="..u2_val)
 
-    name_chosen = nil
     if 1 == u1_val and 1 == u2_val then
       self.currently_selected_user = nil
       colour_effect("black","static")
     elseif 0 == u1_val then
       self.currently_selected_user = 1
-      name_chosen = "user1"
       colour_effect("blue","static")
     elseif 0 == u2_val then
       self.currently_selected_user = 2
       colour_effect("red","static")
-      name_chosen = "user2"
     end
 
-    if name_chosen then
-      mqttwrap.maybepublish("datainput/bathroom/weightselector/user_selected", "name="..name_chosen, 0, 0)
+    if nil ~= self.currently_selected_user then
+      mqttwrap.maybepublish("datainput/bathroom/weightselector/user_selected", "name=user"..tostring(self.currently_selected_user), 0, 0)
     end
 
     self.tmr_disable:register(300000, tmr.ALARM_SINGLE, disable)
@@ -95,13 +92,13 @@ do
     gpio.trig(self.pin_user1, 'both', debounce(button_state_handler))
     gpio.trig(self.pin_user2, 'both', debounce(button_state_handler))
 
-    button_state_handler()
   end
 
   local main = function()
     mqttwrap.subscribe("datainput/bathroom/scale/raw",0)
     mqttwrap.subscribe("datainput/bathroom/scale/published",0)
 
+    button_state_handler()
 
     -- When a "yes, published" message arrives, light up green to indicate
     -- success.
